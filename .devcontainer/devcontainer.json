@@ -9,7 +9,9 @@
           "tamasfe.even-better-toml",
           "Swellaby.vscode-rust-test-adapter",
           "JScearcy.rust-doc-viewer",
-          "rust-lang.rust-analyzer"
+          "rust-lang.rust-analyzer",
+          "bungcip.better-toml",
+          "matklad.rust-analyzer"
         ]
       }
     }
