@@ -6,6 +6,15 @@ use combine::{
     sep_by, sep_end_by, ParseError, Parser, Stream,
 };
 
+use combine::parser::repeat::skip_many;
+
+fn spaces<Input>() -> impl Parser<Input>
+where
+    Input: Stream<Token = char>,
+{
+    skip_many(space()) // 複数の空白をスキップ
+}
+
 /// `Stylesheet` represents a single stylesheet.
 /// It consists of multiple rules, which are called "rule-list" in the standard (https://www.w3.org/TR/css-syntax-3/).
 #[derive(Debug, PartialEq)]
@@ -134,31 +143,34 @@ fn declarations<Input>() -> impl Parser<Input, Output = Vec<Declaration>>
 where
     Input: Stream<Token = char>,
     Input::Error: ParseError<Input::Token, Input::Range, Input::Position>,
-{
-    todo!("you need to implement this");
-    (char(' '),).map(|_| vec![])
-}
+    {
+        sep_end_by(
+            declaration().skip(spaces()),
+            char::char(';').skip(spaces()),
+        )
+    }
 
 fn declaration<Input>() -> impl Parser<Input, Output = Declaration>
 where
     Input: Stream<Token = char>,
     Input::Error: ParseError<Input::Token, Input::Range, Input::Position>,
-{
-    todo!("you need to implement this");
-    (char(' '),).map(|_| Declaration {
-        name: "".into(),
-        value: CSSValue::Keyword("".into()),
-    })
-}
+    {
+        (
+            many1(letter()).skip(spaces()),
+            char::char(':').skip(spaces()),
+            css_value(),
+        )
+            .map(|(k, _, v)| Declaration { name: k, value: v })
+    }
 
 fn css_value<Input>() -> impl Parser<Input, Output = CSSValue>
 where
     Input: Stream<Token = char>,
     Input::Error: ParseError<Input::Token, Input::Range, Input::Position>,
-{
-    todo!("you need to implement this");
-    (char(' '),).map(|_| CSSValue::Keyword("".into()))
-}
+    {
+        let keyword = many1(letter()).map(|s| CSSValue::Keyword(s));
+        keyword
+    }
 
 #[cfg(test)]
 mod tests {
