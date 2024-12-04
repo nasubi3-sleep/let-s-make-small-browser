@@ -32,3 +32,13 @@ HTMLからDOMが生成される
 EBNF (Extended Backus-Naur Form)   
 ![alt text](image-3.png)
 ![alt text](image-4.png)
+
+
+## レンダリングツリーを作る
+
+レンダリングツリー：DOM と CSSOMから構築される、画面描画の手前のステップで作成される中間構造。「DOM ツリー中の各ノードに、最低限それに対応する CSS プロパティを紐づけたものであって、かつ display: none プロパティが指定されたノードが含まれないもの」とこのサイトでは定義している    
+スタイル（Style）：レンダリングツリーを作成するプロセス  
+User Agent (UA) ：ウェブブラウザやクライアントアプリケーションを指す用語。ブラウザとか。
+User Agent Style Sheet：ブラウザ（User Agent）によってデフォルトで適用されるCSS
+
+![alt text](image-5.png)
