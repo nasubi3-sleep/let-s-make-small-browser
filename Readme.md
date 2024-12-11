@@ -55,3 +55,13 @@ box tree : レイアウト処理の結果
 box：box tree の各要素  
 
 ペイント: レイアウト処理の後に実施する、画面に描画するための処理。   
+
+
+# Part2
+
+## JavaScript と Web
+WebAssembly (Wasm)：　ブラウザ上で動作するためのバイナリ形式のコードを記述する仕組みです。C、C++、Rust、Goなどの言語で書いたコードをWebAssemblyに変換すれば、JavaScriptの代わりにAPIを使えるようになります。（GPT）
+Transpiling（トランスパイル）：　PythonやTypeScript、Ruby、Dartなどの言語をJavaScriptに変換（トランスパイル）して利用する方法です。この方法では、変換後のコードが最終的にJavaScriptになるため、ブラウザAPIを問題なく使えます。（GPT）
+→結局JavaScriptに変換する必要があるっぽい
+バインディング： JavaScript エンジンと Web ブラウザ実装をつなげること。二つをつなぐバインディングコードはWebIDLを参考にして自動生成されるらしい。ほんまか？すごすぎる
+
